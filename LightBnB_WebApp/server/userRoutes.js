@@ -59,7 +59,6 @@ module.exports = function(router, database) {
       res.send({message: "not logged in"});
       return;
     }
-
     database.getUserWithId(userId)
       .then(user => {
         if (!user) {
