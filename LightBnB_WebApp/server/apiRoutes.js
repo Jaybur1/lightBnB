@@ -2,7 +2,9 @@ module.exports = function(router, database) {
 
   router.get('/properties', (req, res) => {
     database.getAllProperties(req.query, 20)
-    .then(properties => res.send({properties}))
+    .then(properties => {
+      console.log(properties)
+      res.send({properties})})
     .catch(e => {
       console.error(e);
       res.send(e)
@@ -27,6 +29,7 @@ module.exports = function(router, database) {
     const userId = req.session.userId;
     database.addProperty({...req.body, owner_id: userId})
       .then(property => {
+        console.log(property)
         res.send(property);
       })
       .catch(e => {
